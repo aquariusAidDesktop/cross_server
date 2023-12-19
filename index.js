@@ -1,6 +1,9 @@
 import { PrismaClient } from "@prisma/client";
 import express from "express";
 import dotenv from "dotenv"
+import morgan from "morgan";
+
+import { registerUser } from "./Auth/register.service.js";
 
 
 const prisma = new PrismaClient();
@@ -9,6 +12,10 @@ dotenv.config();
 
 async function main() {
 
+  app.use(morgan("tiny"));
+  app.use(express.json());
+
+  app.use("/api/register-user/", registerUser)
 
 
   app.listen(

@@ -12,12 +12,22 @@ datasource db {
 
 model User {
   id           Int    @id @default(autoincrement())
-  name         String
-  firstName    String
-  secondName   String
-  adress       String
-  email        String
+  login        String
+  email        String @unique
   password     String
   passwordHash String
-  role         String
+  role         String @default("User")
+}
+
+model PostClient {
+  id           Int    @id @default(autoincrement())
+  userId       Int    @unique
+  name         String
+  surname      String
+  secondName   String
+  globalAdress String
+  localAdress  String
+  gender       String
+  phone        String
+  index        Int
 }
